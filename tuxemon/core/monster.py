@@ -37,8 +37,10 @@ import random
 
 from tuxemon.core import graphics
 from tuxemon.core import ai, fusion
-from tuxemon.core.locale import T
+from tuxemon.core import graphics
+from tuxemon.core import tools
 from tuxemon.core.db import db
+from tuxemon.core.locale import T
 from tuxemon.core.technique import Technique
 
 logger = logging.getLogger(__name__)

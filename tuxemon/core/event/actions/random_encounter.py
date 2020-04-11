@@ -27,13 +27,11 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import tools
 from tuxemon.core import ai, monster, prepare
-from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
-from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +67,10 @@ class RandomEncounterAction(EventAction):
         # battle.
         if encounter:
             logger.info("Starting random encounter!")
+
+            # Stop movement and keypress on the server.
+            if self.session.client.isclient or self.session.client.ishost:
+                self.session.client.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
             npc = _create_monster_npc(encounter)
 
@@ -109,7 +111,7 @@ def _choose_encounter(encounters, total_prob):
         scale = 1
 
     scale *= prepare.CONFIG.encounter_rate_modifier
-    
+
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

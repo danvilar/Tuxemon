@@ -175,6 +175,7 @@ def pygame_init():
 
 # Initialize the game framework
 def init():
+    # initialize any platform-specific workarounds before pygame
     from tuxemon.core import platform
     platform.init()
     if PLATFORM == 'pygame':

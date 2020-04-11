@@ -36,8 +36,8 @@ from pygame.transform import rotozoom
 from pygame.transform import scale
 
 from tuxemon.compat import Rect
-from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.pyganim import PygAnimation
 
 import logging
 
@@ -369,7 +369,7 @@ class VisualSpriteList(RelativeGroup):
     sprites into columns.
     """
     orientation = 'horizontal'  # default, and only implemented
-    expand = True               # will fill all space of parent, if false, will be more compact
+    expand = True  # will fill all space of parent, if false, will be more compact
 
     def __init__(self, **kwargs):
         super(VisualSpriteList, self).__init__(**kwargs)

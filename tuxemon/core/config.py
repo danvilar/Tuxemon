@@ -40,10 +40,6 @@ from collections import OrderedDict
 
 from six.moves import configparser
 
-from tuxemon.core.animation import Animation
-
-Animation.default_transition = 'out_quint'
-
 
 class TuxemonConfig(object):
     """ Handles loading of the configuration file for the primary game and map editor.

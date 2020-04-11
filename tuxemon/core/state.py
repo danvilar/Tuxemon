@@ -70,8 +70,8 @@ class State(object):
     __metaclass__ = ABCMeta
 
     rect = Rect((0, 0), prepare.SCREEN_SIZE)
-    transparent = False   # ignore all background/borders
-    force_draw = False    # draw even if completely under another state
+    transparent = False  # ignore all background/borders
+    force_draw = False  # draw even if completely under another state
 
     def __init__(self, client):
         """ Do not override this unless there is a special need.
@@ -86,7 +86,7 @@ class State(object):
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
-        self.sprites = SpriteGroup()             # all sprites that draw on the screen
+        self.sprites = SpriteGroup()  # all sprites that draw on the screen
 
     @property
     def name(self):
@@ -464,3 +464,14 @@ class StateManager(object):
         :rtype: List
         """
         return self._state_stack[:]
+
+    def get_state_name(self, name):
+        """ Query the state stack for a state by the name supplied
+
+        :str name: str
+        :rtype: State, None
+        """
+        for state in self.active_states:
+            if state.__class__.__name__ == name:
+                return state
+        return None
